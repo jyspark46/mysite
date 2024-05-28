@@ -14,6 +14,9 @@ import com.poscodx.mysite.controller.action.user.JoinFormAction;
 import com.poscodx.mysite.controller.action.user.JoinSuccess;
 import com.poscodx.mysite.controller.action.user.LoginAction;
 import com.poscodx.mysite.controller.action.user.LoginFormAction;
+import com.poscodx.mysite.controller.action.user.LogoutAction;
+import com.poscodx.mysite.controller.action.user.UpdateAction;
+import com.poscodx.mysite.controller.action.user.UpdateFormAction;
 import com.poscodx.mysite.dao.UserDao;
 import com.poscodx.mysite.vo.UserVo;
 
@@ -25,7 +28,10 @@ public class UserServlet extends ActionServlet {
 		"join", new JoinAction(),
 		"joinsuccess", new JoinSuccess(),
 		"loginform", new LoginFormAction(),
-		"login", new LoginAction()
+		"login", new LoginAction(),
+		"logout", new LogoutAction(),
+		"updateform", new UpdateFormAction(),
+		"update", new UpdateAction()
 	);
 	
 	@Override
