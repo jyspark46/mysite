@@ -17,7 +17,7 @@ public class UpdateAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		// Access Control
+		// Access Control started ***
 		if(session == null) {
 			response.sendRedirect(request.getContextPath());
 			return;
@@ -27,7 +27,7 @@ public class UpdateAction implements Action {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
-		///////////////////////////////////////////////////////////
+		// Access Control finished ***
 
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
