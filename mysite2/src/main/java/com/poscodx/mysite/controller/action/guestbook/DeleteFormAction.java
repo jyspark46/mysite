@@ -1,4 +1,4 @@
-package com.poscodx.mysite.controller.action.user;
+package com.poscodx.mysite.controller.action.guestbook;
 
 import java.io.IOException;
 
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.mysite.controller.ActionServlet.Action;
 
-public class JoinFormAction implements Action {
+public class DeleteFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request
-			.getRequestDispatcher("/WEB-INF/views/user/joinform.jsp")
-			.forward(request, response);	
+			.getRequestDispatcher("/WEB-INF/views/guestbook/deleteform.jsp")
+			.forward(request, response);
 	}
 }

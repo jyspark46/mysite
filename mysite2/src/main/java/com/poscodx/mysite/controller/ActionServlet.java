@@ -15,7 +15,7 @@ public abstract class ActionServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
+		// req.setCharacterEncoding("utf-8");
 		String actionName = Optional.ofNullable(req.getParameter("a")).orElse(""); // 자바에서 null 처리하기
 		
 		Action action = getAction(actionName);
