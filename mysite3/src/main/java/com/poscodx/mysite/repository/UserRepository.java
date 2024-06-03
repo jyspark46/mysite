@@ -52,7 +52,7 @@ public class UserRepository {
 		return result;	
 	}
 
-	public UserVo findByNoAndPassword(String email, String password) {
+	public UserVo findByEmailAndPassword(String email, String password) {
 		UserVo result = null;
 		
 		try (
