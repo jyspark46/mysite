@@ -10,3 +10,5 @@ select no, name from board where email = 'jyspark46@gmail.com' and password=pass
 
 -- test
 select * from board;
+
+select * from user;
