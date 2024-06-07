@@ -72,7 +72,7 @@
 				<div class="pager">
 					<ul>
 						<c:if test="${curPageNum > 5 && !empty kwd }">
-							<li><a href="${pageContext.request.contextPath}/board?&a=board&page=${groupStartNum - 1 }&kwd=${kwd }">◀</a></li>
+							<li><a href="${pageContext.request.contextPath}/board?a=board&page=${groupStartNum - 1 }&kwd=${kwd }">◀</a></li>
 						</c:if>
 
 						<c:if test="${curPageNum > 5 }">
