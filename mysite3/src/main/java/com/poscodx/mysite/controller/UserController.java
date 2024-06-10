@@ -38,30 +38,32 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpSession session, UserVo vo, Model model) {
-		UserVo authUser = userService.getUser(vo.getEmail(), vo.getPassword());
-		
-		if(authUser == null) {
-			model.addAttribute("email", vo.getEmail());
-			model.addAttribute("result", "fail");
-			
-			// login 실패
-			return "user/login";
-		}
-		
-		// login 성공
-		session.setAttribute("authUser", authUser);
-		return "redirect:/";
-	}
+	// LoginInterceptor 가 대체 !!
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	public String login(HttpSession session, UserVo vo, Model model) {
+//		UserVo authUser = userService.getUser(vo.getEmail(), vo.getPassword());
+//		
+//		if(authUser == null) {
+//			model.addAttribute("email", vo.getEmail());
+//			model.addAttribute("result", "fail");
+//			
+//			// login 실패
+//			return "user/login";
+//		}
+//		
+//		// login 성공
+//		session.setAttribute("authUser", authUser);
+//		return "redirect:/";
+//	}
 	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("authUser");
-		session.invalidate();
-		
-		return "redirect:/";
-	}
+	// LogoutInterceptor 가 대체 !!
+//	@RequestMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.removeAttribute("authUser");
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	// public String update(@AuthUser UserVo vo) { --> Spring스럽게 코딩
