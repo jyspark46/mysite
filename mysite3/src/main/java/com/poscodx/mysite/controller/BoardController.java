@@ -1,3 +1,4 @@
+
 package com.poscodx.mysite.controller;
 
 import java.util.Map;
@@ -20,22 +21,22 @@ import com.poscodx.web.util.WebUtil;
 
 @Controller
 @RequestMapping("/board")
-public class BoardController {	
+public class BoardController {
 	@Autowired
 	private BoardService boardService;
-	
+
 	@RequestMapping("")
 	public String index(
-			@RequestParam(value="p", required=true, defaultValue="1") Integer page,
-			@RequestParam(value="kwd", required=true, defaultValue="") String keyword,
-			Model model) {
+		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
+		@RequestParam(value="kwd", required=true, defaultValue="") String keyword,
+		Model model) {
 		
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 
 		// model.addAllAttributes(map);
 		model.addAttribute("map", map);
 		model.addAttribute("keyword", keyword);
-		 
+		
 		return "board/index";
 	}
 	
@@ -48,17 +49,16 @@ public class BoardController {
 	
 	@RequestMapping("/delete/{no}")
 	public String delete(
-			HttpSession session,
-			@PathVariable("no") Long boardNo,
-			@RequestParam(value="p", required=true, defaultValue="1") Integer page,
-			@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-		
-		// access control start
+		HttpSession session,
+		@PathVariable("no") Long boardNo,
+		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
+		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {		
+		// access control
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/";
 		}
-		// access control end
+		////////////////////////
 		
 		boardService.deleteContents(boardNo, authUser.getNo());
 		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
@@ -127,6 +127,7 @@ public class BoardController {
 		
 		return	"redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
 	}
+
 
 	@RequestMapping(value="/reply/{no}")	
 	public String reply(
