@@ -9,3 +9,9 @@ select no, name from user where email = 'jyspark46@gmail.com' and password=passw
 
 -- test
 select * from user;
+
+-- role 추가
+alter table user add column role enum('ADMIN', 'USER') not null default 'USER';
+
+-- role 변경
+update user set role='ADMIN' where no = 1;
