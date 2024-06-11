@@ -2,8 +2,6 @@ package com.poscodx.mysite.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +28,6 @@ public class BoardController {
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword,
 		Model model) {
-		
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 
 		// model.addAllAttributes(map);
@@ -44,90 +41,62 @@ public class BoardController {
 	public String view(@PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.getContents(no);
 		model.addAttribute("boardVo", boardVo);
+		
 		return "board/view";
 	}
 	
 	@Auth
 	@RequestMapping("/delete/{no}")
 	public String delete(
-		HttpSession session,
+		@AuthUser UserVo authUser, // access control 대체
 		@PathVariable("no") Long boardNo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {		
-		// access control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////
-		
 		boardService.deleteContents(boardNo, authUser.getNo());
+		
 		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
 	}
 	
 	@Auth
 	@RequestMapping("/modify/{no}")	
-	public String modify(HttpSession session, @PathVariable("no") Long no, Model model) {
-		// access control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////
-		
+	public String modify(
+		@AuthUser UserVo authUser, // access control 대체
+		@PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.getContents(no, authUser.getNo());
 		model.addAttribute("boardVo", boardVo);
+		
 		return "board/modify";
 	}
 
 	@Auth
 	@RequestMapping(value="/modify", method=RequestMethod.POST)	
 	public String modify(
-		HttpSession session, 
+		@AuthUser UserVo authUser, // access control 대체
 		BoardVo boardVo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {		
-		// access control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////
-		
 		boardVo.setUserNo(authUser.getNo());
 		boardService.modifyContents(boardVo);
+		
 		return "redirect:/board/view/" + boardVo.getNo() + 
 				"?p=" + page + 
 				"&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
 	}
 
-	@Auth
+	@Auth // access control 대체
 	@RequestMapping(value="/write", method=RequestMethod.GET)	
-	public String write(HttpSession session) {
-		// @Auth가 대체 !!
-//		// access control
-//		UserVo authUser = (UserVo)session.getAttribute("authUser");
-//		if(authUser == null) {
-//			return "redirect:/";
-//		}
-//		////////////////////////
+	public String write() {
+
 		return "board/write";
 	}
 
 	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)	
 	public String write(
-		HttpSession session,
+		@AuthUser UserVo authUser, // access control 대체
 		@ModelAttribute BoardVo boardVo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
-		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-		// access control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////		
-		
+		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {	
 		boardVo.setUserNo(authUser.getNo());
 		boardService.addContents(boardVo);
 		
@@ -140,7 +109,6 @@ public class BoardController {
 		BoardVo boardVo = boardService.getContents(no);
 		boardVo.setOrderNo(boardVo.getOrderNo() + 1);
 		boardVo.setDepth(boardVo.getDepth() + 1);
-		
 		model.addAttribute("boardVo", boardVo);
 		
 		return "board/reply";

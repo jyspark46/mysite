@@ -80,13 +80,13 @@ public class UserController {
 	
 	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(HttpSession session, UserVo vo) {
-		// access control start
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		//access control end
+	public String update(@AuthUser UserVo authUser, UserVo vo) {
+//		// access control start
+//		UserVo authUser = (UserVo)session.getAttribute("authUser");
+//		if(authUser == null) {
+//			return "redirect:/";
+//		}
+//		//access control end
 		
 		vo.setNo(authUser.getNo());
 		userService.update(vo);
