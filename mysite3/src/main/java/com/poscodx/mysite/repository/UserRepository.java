@@ -108,6 +108,10 @@ public class UserRepository {
 //		
 //		return result;
 	}
+	
+	public UserVo findByEmail(String email) {
+		return sqlSession.selectOne("user.findByEmail", email);
+	}
 
 	public int update(UserVo vo) {
 		
