@@ -29,7 +29,6 @@ $(f); */
 		console.log($("#email").val());
 	})
 }) */
-
 $(function() {
 	$("#btn-check").click(function() {
 		var email = $("#email").val();
@@ -42,11 +41,18 @@ $(function() {
 			type: "get",
 			dataType: "json",
 			error: function(xhr, status, err){
-				console.error(err);
+				console.error(err);			
 			},
-			success: function(response){
-				if(response.exist) {
-					alert("존재하는 이메일입니다. 다른 이메일을 사용해 주세요.")
+			success: function(response) {
+				console.log(response);
+				
+				if(response.result == "fail") {
+					console.error(response.message);
+					return;
+				}
+				
+				if(response.data) {
+					alert("존재하는 이메일입니다. 다른 이메일을 사용해 주세요.");
 					$("#email").val("");
 					$("#email").focus();
 					return;
