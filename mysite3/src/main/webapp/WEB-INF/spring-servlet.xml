@@ -106,7 +106,7 @@
 	</bean>
 	
 	<!-- mvc url-resource mapping -->
-	<mvc:resources mapping="/assets/upload-images/**" location="/Users/juyoungpark/mysite-uploads/" />
+	<mvc:resources mapping="/assets/upload-images/**" location="file:/Users/juyoungpark/mysite-uploads/" />
 	
 	<!-- ApplicationContextEventListener -->
 	<bean class="com.poscodx.mysite.event.ApplicationContextEventListener"/>
