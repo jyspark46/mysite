@@ -1,4 +1,4 @@
-package com.poscodx.mysite.controller;
+package com.poscodx.mysite.security;
 
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -9,5 +9,4 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(PARAMETER)
 public @interface AuthUser {
-
 }
