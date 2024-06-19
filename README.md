@@ -68,7 +68,7 @@
 5. View
    - JSP
    - JSTL & EL
-6. Security **
+6. Security
    - Authentication(인증) & Authorization(권한)
    - Spring Secuirty
 7. Serving Static Resources
