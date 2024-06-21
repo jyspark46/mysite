@@ -3,6 +3,7 @@ package com.poscodx.mysite.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,7 +53,18 @@ public class UserController {
 	
 	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(@AuthUser UserVo authUser, Model model) {
+	public String update(Authentication authentication, Model model) {
+		
+		// 방법 1) SecurityContextHolder(Spring Security ThreadLocal Helper Class) 기반
+		// SecurityContext sc = SecurityContextHolder.getContext();
+		
+		// 방법 2) HttpSession 기반
+		// HttpSession session; // parameter로 받아오기
+		// SecurityContext sc = (SecurityContext)session.getAttribute(HttpSession);
+		// Authentication authentication = sc.getAuthentication();
+		
+		UserVo authUser = (UserVo)authentication.getPrincipal();
+		
 		UserVo vo = userService.getUser(authUser.getNo());
 		model.addAttribute("userVo", vo);
 		
