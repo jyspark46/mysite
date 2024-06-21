@@ -1,4 +1,4 @@
-package com.poscodx.mysite.controller;
+ package com.poscodx.mysite.controller;
 
 import javax.validation.Valid;
 
