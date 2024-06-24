@@ -33,14 +33,20 @@ public class UserRepository {
 		return sqlSession.selectOne("user.findByNo", no);
 	}
 	
-	public UserVo findByEmail(String email) {
-		
-		return sqlSession.selectOne("user.findByEmail", email);
-	}
+//	public UserVo findByEmail(String email) {
+//		
+//		return sqlSession.selectOne("user.findByEmail", email);
+//	}
+//	
+//	public UserDetailsImpl findUserDetailsByEmail(String username) {
+//		
+//		return sqlSession.selectOne("user.findUserDetailsByEmail", username);
+//	}
 	
-	public UserDetailsImpl findUserDetailsByEmail(String username) {
+	public <R> R findByEmail(String email) {
+		R result = null;
 		
-		return sqlSession.selectOne("user.findUserDetailsByEmail", username);
+		return result;
 	}
 
 	public int update(UserVo vo) {
