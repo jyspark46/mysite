@@ -1,5 +1,7 @@
 package com.poscodx.mysite.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,18 @@ public class UserController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute @Valid UserVo vo, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			model.addAllAttributes(result.getModel());
+//			model.addAttribute("userVo", vo);
+
+//			List<ObjectError> list = result.getAllErrors();
+//			for(ObjectError error:list) {
+//				System.out.println(error);
+//			}
+			Map<String, Object> map = result.getModel();			
+//			Set<String> s = map.keySet();
+//			for(String key : s) {
+//				model.addAttribute(key, map.get(key));
+//			}
+			model.addAllAttributes(map);
 			
 			return "user/join";
 		}

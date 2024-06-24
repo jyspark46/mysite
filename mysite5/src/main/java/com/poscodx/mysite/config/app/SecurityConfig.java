@@ -65,9 +65,8 @@ public class SecurityConfig {
 					
 					request.setAttribute("email", request.getParameter("email"));
 					request
-						.getRequestDispatcher("user/login")
+						.getRequestDispatcher("/user/login")
 						.forward(request, response);
-					
 				}
 			})
     		.and()
