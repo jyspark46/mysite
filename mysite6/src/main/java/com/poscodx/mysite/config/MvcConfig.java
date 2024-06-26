@@ -16,7 +16,6 @@ import com.poscodx.mysite.interceptor.SiteInterceptor;
 
 @SpringBootConfiguration
 public class MvcConfig implements WebMvcConfigurer {
-	
 	// View Resolver
 	@Bean
 	public ViewResolver viewResolver() {

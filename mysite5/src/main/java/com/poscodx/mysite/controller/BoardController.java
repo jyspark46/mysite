@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.poscodx.mysite.service.BoardService;
 import com.poscodx.mysite.vo.BoardVo;
 import com.poscodx.mysite.vo.UserVo;
-import com.poscodx.web.util.WebUtil;
+import com.poscodx.mysite.web.util.WebUtil;
 
 @Controller
 @RequestMapping("/board")

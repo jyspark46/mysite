@@ -1,4 +1,4 @@
-package com.poscodx.web.util;
+package com.poscodx.mysite.web.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

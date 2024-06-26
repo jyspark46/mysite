@@ -2,35 +2,35 @@
 spring:
    application:
       name: mysite
-   
+ 
    # devtools - live reload
    devtools:
       livereload:
          enabled: true
-   
+
    # aop
    aop:
       auto: true
       proxy-target-class: true
-   
-   # mvc
+
+   # mvc            
    mvc:
       static-path-pattern: /assets/**
       # view:
       #   prefix: /WEB-INF/views/
       #   suffix: .jsp
-   
+
    # web
    web:
       resources:
          static-locations: file:/Users/juyoungpark/mysite-uploads/, classpath:assets/
    
-   # message resource(internationalization=i18n)
+   # message resources(internationalization = i18n)
    messages:
       basename: messages/message
       encoding: utf-8
       always-use-message-format: true
-   
+      
    # multipart
    servlet:
       multipart:
@@ -38,23 +38,20 @@ spring:
          max-file-size: 50MB
          max-request-size: 10MB
          
-   
-   # data source
+   # datasource
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://192.168.0.206:3306/webdb?charset=utf8
       username: webdb
-      password: webdb 
+      password: webdb
       hikari:
          minimum-idle: 10
-         maximum-pool-size: 20
+         maximum-pool-size: 20  
 
 # mybatis
-mymatis:
+mybatis:
    config-location: classpath:mybatis/configuration.xml
-
-
-
+   
 # server configuration
 server:
    port: 8088
@@ -68,4 +65,4 @@ server:
 
 # logging
 logging:
-   config: classpath:logback.xml
+  config: classpath:logback.xml         
