@@ -60,6 +60,10 @@ server:
       encoding:
          charset: utf-8
          enabled: true
+   error:
+      whitelabel:
+         enabled: false
+      path: /error
 
 
 
